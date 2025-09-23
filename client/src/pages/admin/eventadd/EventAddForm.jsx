@@ -200,7 +200,7 @@ export default function EventAddForm() {
           if (!newErrors[e.path]) newErrors[e.path] = e.message;
         });
         setErrors(newErrors);
-       // toast.error("Please fix the errors");
+        // toast.error("Please fix the errors");
       } else {
         toast.error(err.response?.data?.message || err.message);
       }
@@ -218,10 +218,10 @@ export default function EventAddForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-950 flex items-center justify-center p-6">
-      <Card className="border-slate-200 dark:border-slate-800 shadow-lg shadow-slate-200/40 dark:shadow-black/20 rounded-2xl w-full max-w-lg">
+    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-6">
+      <Card className="border-slate-200 dark:border-gray-700 shadow-lg shadow-slate-200/40 dark:shadow-black/30 rounded-2xl w-full max-w-lg bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle className="text-2xl text-center text-gray-800 dark:text-gray-200">
+          <CardTitle className="text-2xl text-center text-gray-800 dark:text-white">
             Add Event
           </CardTitle>
         </CardHeader>
@@ -230,7 +230,12 @@ export default function EventAddForm() {
           <form className="grid gap-3" onSubmit={handleSubmit}>
             {/* Event Name */}
             <div className="grid gap-2">
-              <Label htmlFor="eventName">Event Name</Label>
+              <Label
+                htmlFor="eventName"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Event Name
+              </Label>
               <Input
                 id="eventName"
                 name="eventName"
@@ -239,16 +244,23 @@ export default function EventAddForm() {
                 onChange={(e) =>
                   setFormData({ ...formData, eventName: e.target.value })
                 }
-                
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
               />
             </div>
             {errors.eventName && (
-              <p className="text-sm text-red-600">{errors.eventName}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.eventName}
+              </p>
             )}
 
             {/* Contact Person */}
             <div className="grid gap-2">
-              <Label htmlFor="contactPerson">Contact Person Name</Label>
+              <Label
+                htmlFor="contactPerson"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Contact Person Name
+              </Label>
               <Input
                 id="contactPerson"
                 name="contactPerson"
@@ -257,16 +269,23 @@ export default function EventAddForm() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactPerson: e.target.value })
                 }
-                
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
               />
             </div>
             {errors.contactPerson && (
-              <p className="text-sm text-red-600">{errors.contactPerson}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.contactPerson}
+              </p>
             )}
 
             {/* Contact Number */}
             <div className="grid gap-2">
-              <Label htmlFor="contactNo">Contact Number</Label>
+              <Label
+                htmlFor="contactNo"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Contact Number
+              </Label>
               <Input
                 id="contactNo"
                 name="contactNo"
@@ -276,16 +295,23 @@ export default function EventAddForm() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactNo: e.target.value })
                 }
-                
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
               />
             </div>
             {errors.contactNo && (
-              <p className="text-sm text-red-600">{errors.contactNo}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.contactNo}
+              </p>
             )}
 
             {/* Function Name */}
             <div className="grid gap-2">
-              <Label htmlFor="functionName">Function Name</Label>
+              <Label
+                htmlFor="functionName"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Function Name
+              </Label>
               <Input
                 id="functionName"
                 name="functionName"
@@ -294,16 +320,23 @@ export default function EventAddForm() {
                 onChange={(e) =>
                   setFormData({ ...formData, functionName: e.target.value })
                 }
-                
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
               />
             </div>
             {errors.functionName && (
-              <p className="text-sm text-red-600">{errors.functionName}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.functionName}
+              </p>
             )}
 
             {/* Function Type */}
             <div className="grid gap-2">
-              <Label htmlFor="functionType">Function Type</Label>
+              <Label
+                htmlFor="functionType"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Function Type
+              </Label>
               <Input
                 id="functionType"
                 name="functionType"
@@ -312,11 +345,13 @@ export default function EventAddForm() {
                 onChange={(e) =>
                   setFormData({ ...formData, functionType: e.target.value })
                 }
-                
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
               />
             </div>
             {errors.functionType && (
-              <p className="text-sm text-red-600">{errors.functionType}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.functionType}
+              </p>
             )}
 
             {/* Relation */}
@@ -332,26 +367,32 @@ export default function EventAddForm() {
                         relationEnabled: e.target.checked,
                       })
                     }
+                    className="rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-500 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-800"
                   />
-                  <span className="text-sm flex flex-wrap">
+                  <span className="text-sm flex flex-wrap text-gray-700 dark:text-gray-300">
                     Relation (Bride & Groom)
                   </span>
                 </label>
                 {/* EventDatePicker */}
-                <div className="flex gap-2 items-center  md:max-w-md">
+                <div className="flex gap-2 items-center md:max-w-md">
                   <EventDatePicker value={date} onChange={setDate} />
-                  
                 </div>
-                
               </div>
               {errors.eventDate && (
-                    <p className="text-sm text-red-600">{errors.eventDate}</p>
-                  )}
+                <p className="text-sm text-red-500 dark:text-red-400">
+                  {errors.eventDate}
+                </p>
+              )}
 
               {formData.relationEnabled && (
                 <div className="grid gap-4 mt-2">
                   <div>
-                    <Label htmlFor="brideName">Bride Name</Label>
+                    <Label
+                      htmlFor="brideName"
+                      className="text-gray-700 dark:text-gray-300 font-medium"
+                    >
+                      Bride Name
+                    </Label>
                     <Input
                       id="brideName"
                       name="brideName"
@@ -360,13 +401,21 @@ export default function EventAddForm() {
                       onChange={(e) =>
                         setFormData({ ...formData, brideName: e.target.value })
                       }
+                      className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
                     />
                   </div>
                   {errors.brideName && (
-                    <p className="text-sm text-red-600">{errors.brideName}</p>
+                    <p className="text-sm text-red-500 dark:text-red-400">
+                      {errors.brideName}
+                    </p>
                   )}
                   <div>
-                    <Label htmlFor="groomName">Groom Name</Label>
+                    <Label
+                      htmlFor="groomName"
+                      className="text-gray-700 dark:text-gray-300 font-medium"
+                    >
+                      Groom Name
+                    </Label>
                     <Input
                       id="groomName"
                       name="groomName"
@@ -375,10 +424,13 @@ export default function EventAddForm() {
                       onChange={(e) =>
                         setFormData({ ...formData, groomName: e.target.value })
                       }
+                      className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400"
                     />
                   </div>
                   {errors.groomName && (
-                    <p className="text-sm text-red-600">{errors.groomName}</p>
+                    <p className="text-sm text-red-500 dark:text-red-400">
+                      {errors.groomName}
+                    </p>
                   )}
                 </div>
               )}
@@ -386,7 +438,12 @@ export default function EventAddForm() {
 
             {/* Welcome Image */}
             <div className="grid gap-2">
-              <Label htmlFor="welcomeImage">Welcome Image</Label>
+              <Label
+                htmlFor="welcomeImage"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Welcome Image
+              </Label>
               <Input
                 id="welcomeImage"
                 name="welcomeImage"
@@ -395,44 +452,59 @@ export default function EventAddForm() {
                 onChange={(e) =>
                   setFormData({ ...formData, welcomeImage: e.target.files[0] })
                 }
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white file:mr-4  file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 dark:file:bg-gray-800 dark:file:text-gray-300 "
               />
             </div>
             {errors.welcomeImage && (
-              <p className="text-sm text-red-600">{errors.welcomeImage}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.welcomeImage}
+              </p>
             )}
 
             {/* Agent */}
-              <div className="grid gap-2">
-                <Label>Agent Name</Label>
-                <Select
-                  value={formData.agentId || ""}
-                  onValueChange={(value) =>
-                    setFormData((prev) => ({ ...prev, agentId: value }))
-                  }
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select agent" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {agents.map((agent) => (
-                      <SelectItem key={agent._id} value={agent._id}>
-                        {agent.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              {errors.agentId && <p className="text-sm text-red-600">{errors.agentId}</p>}
+            <div className="grid gap-2">
+              <Label className="text-gray-700 dark:text-gray-300 font-medium">
+                Agent Name
+              </Label>
+              <Select
+                value={formData.agentId || ""}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, agentId: value }))
+                }
+              >
+                <SelectTrigger className="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
+                  <SelectValue placeholder="Select agent" />
+                </SelectTrigger>
+                <SelectContent className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
+                  {agents.map((agent) => (
+                    <SelectItem
+                      key={agent._id}
+                      value={agent._id}
+                      className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
+                      {agent.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {errors.agentId && (
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.agentId}
+              </p>
+            )}
 
             {/* Gifts */}
             <div className="grid gap-2">
-              <Label>Gift Options</Label>
+              <Label className="text-gray-700 dark:text-gray-300 font-medium">
+                Gift Options
+              </Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     role="combobox"
-                    className="w-full justify-between"
+                    className="w-full justify-between bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
                   >
                     {formData.gifts.length > 0
                       ? `${formData.gifts.length} selected`
@@ -440,19 +512,20 @@ export default function EventAddForm() {
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-56 p-0">
-                  <Command>
+                <PopoverContent className="w-56 p-0 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
+                  <Command className="bg-white dark:bg-gray-800">
                     <CommandList>
                       {gifts.map((gift) => (
                         <CommandItem
                           key={gift._id}
                           onSelect={() => toggleGift(gift._id)}
-                          className="flex items-center gap-2"
+                          className="flex items-center gap-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                           <input
                             type="checkbox"
                             checked={formData.gifts.includes(gift._id)}
                             readOnly
+                            className="rounded border-gray-300 dark:border-gray-600 text-indigo-600 dark:text-indigo-500 focus:ring-indigo-500 dark:focus:ring-indigo-400 bg-white dark:bg-gray-800"
                           />
                           {gift.giftName}
                         </CommandItem>
@@ -462,9 +535,16 @@ export default function EventAddForm() {
                 </PopoverContent>
               </Popover>
             </div>
-            {errors.gifts && <p className="text-sm text-red-600">{errors.gifts}</p>}
+            {errors.gifts && (
+              <p className="text-sm text-red-500 dark:text-red-400">
+                {errors.gifts}
+              </p>
+            )}
 
-            <Button type="submit" className="w-full mt-5">
+            <Button
+              type="submit"
+              className="w-full mt-5 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200"
+            >
               Save
             </Button>
           </form>

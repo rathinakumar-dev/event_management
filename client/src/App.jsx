@@ -28,7 +28,7 @@ export default function App() {
           {/* Public */}
           <Route path="/" element={<Login />} />
           <Route path="/guest_form/:eventId" element={<GuestForm />} />
-          <Route path="*" element={<EventStatus />} /> {/* fallback 404 */}
+          <Route path="*" element={<EventStatus />} /> 
 
           {/* Agent routes */}
           <Route element={<PrivateRoute allowedRoles={["agent"]} />}>

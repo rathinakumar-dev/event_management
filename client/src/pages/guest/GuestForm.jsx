@@ -33,9 +33,8 @@ const GuestForm = () => {
     try {
       const res = await axios.get(`/api/events/public/${eventId}`);
       setEventData(res.data);
-      setEventList(res.data ? [res.data] : []); 
+      setEventList(res.data ? [res.data] : []);
       console.log(res.data);
-      
     } catch (err) {
       console.error(err);
       toast.error("Error fetching event details");
@@ -131,7 +130,8 @@ const GuestForm = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 hero-section bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 hero-section bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 flex flex-col items-center justify-center">
+      {/* Hero Section */}
       <div className="max-w-md p-2 text-center mx-auto">
         <p
           className="max-w-md mx-auto text-5xl font-bold"
@@ -145,21 +145,22 @@ const GuestForm = () => {
         </p>
       </div>
 
-      <div className="max-w-md mx-auto mt-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-colors duration-300">
+      {/* Form Card */}
+      <div className="max-w-md mx-auto mt-6 bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden transition-colors duration-300">
         <div className="px-6 py-8">
           <div className="text-center">
             <Gift className="mx-auto h-12 w-12 text-purple-600" />
-            <h2 className="mt-4 text-3xl font-bold text-gray-900 dark:text-gray-200">
+            <h2 className="mt-4 text-3xl font-bold text-gray-900 dark:text-white">
               Personalized Gift Entry
             </h2>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
               Get your Memorable Customized Printed Gifts instantly
             </p>
           </div>
 
           <form className="mt-8 space-y-6" onSubmit={handleSubmit} noValidate>
             {/* Full Name */}
-            <div>
+            <div className="text-left">
               <label
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -173,19 +174,23 @@ const GuestForm = () => {
                 required
                 value={formData.name}
                 onChange={handleInputChange}
-                className={
+                className={`w-full border 
+                ${
                   errors.name
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600"
                 }
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-white`}
               />
               {errors.name && (
-                <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+                <p className="text-red-600 dark:text-red-500 text-sm mt-1">
+                  {errors.name}
+                </p>
               )}
             </div>
 
             {/* Mobile */}
-            <div>
+            <div className="text-left">
               <label
                 htmlFor="mobile"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -200,28 +205,31 @@ const GuestForm = () => {
                 maxLength={10}
                 value={formData.mobile}
                 onChange={handleInputChange}
-                className={
+                className={`w-full border 
+                ${
                   errors.mobile
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600"
                 }
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-white`}
               />
               {errors.mobile && (
-                <p className="text-red-600 text-sm mt-1">{errors.mobile}</p>
+                <p className="text-red-600 dark:text-red-500 text-sm mt-1">
+                  {errors.mobile}
+                </p>
               )}
             </div>
 
             {/* Gift Selection */}
-            <div>
+            <div className="text-left">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Select Gift Type
               </label>
-
               <div className="grid grid-cols-3 gap-4">
                 {eventList[0]?.gifts?.map((gift) => (
                   <div
                     key={gift._id}
-                    className={`text-center p-2 rounded-lg cursor-pointer transition-all ${
+                    className={`text-center p-2 rounded-lg cursor-pointer transition-all flex flex-col items-center ${
                       formData.giftOption === gift._id
                         ? "border-2 border-purple-500 ring-2 ring-purple-300"
                         : "border border-gray-300 dark:border-gray-600"
@@ -248,12 +256,14 @@ const GuestForm = () => {
                 ))}
               </div>
               {errors.giftOption && (
-                <p className="text-red-600 text-sm mt-1">{errors.giftOption}</p>
+                <p className="text-red-600 dark:text-red-500 text-sm mt-1">
+                  {errors.giftOption}
+                </p>
               )}
             </div>
 
             {/* Custom Message */}
-            <div>
+            <div className="text-left">
               <label
                 htmlFor="customMessage"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -266,20 +276,24 @@ const GuestForm = () => {
                 value={formData.customMessage}
                 onChange={handleInputChange}
                 maxLength={50}
-                className={
+                className={`w-full border 
+                ${
                   errors.customMessage
                     ? "border-red-500"
                     : "border-gray-300 dark:border-gray-600"
                 }
+                bg-white dark:bg-gray-800 text-gray-900 dark:text-white`}
               />
               {errors.customMessage && (
-                <p className="text-red-600 text-sm mt-1">{errors.customMessage}</p>
+                <p className="text-red-600 dark:text-red-500 text-sm mt-1">
+                  {errors.customMessage}
+                </p>
               )}
             </div>
 
             <Button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md py-2 px-4"
               disabled={loading}
             >
               {loading ? "Submitting..." : "Submit Gift Request"}
@@ -292,7 +306,7 @@ const GuestForm = () => {
       {showAdModal && eventList.length > 0 && (
         <div className="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center">
           <div className="fixed inset-0 bg-black opacity-90"></div>
-          <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl md:max-w-[60%] w-full mx-4 transition-colors duration-300">
+          <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-xl md:max-w-[60%] w-full mx-4 transition-colors duration-300">
             <div className="absolute top-4 right-8">
               <button
                 onClick={() => setShowAdModal(false)}
@@ -303,16 +317,14 @@ const GuestForm = () => {
               </button>
             </div>
             <div className="p-6 flex flex-col justify-center items-center">
-              <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 text-center mb-4">
+              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white text-center mb-4">
                 Choose Your Gifts
               </h3>
-
               <img
                 src={eventList[0]?.welcomeImage}
                 alt={eventList[0]?.eventName || "Welcome"}
                 className="w-full m-5 h-80 object-contain rounded-md mb-4"
               />
-
               <p className="text-gray-600 dark:text-gray-300 text-center font-medium">
                 Closing in{" "}
                 <span className="font-semibold text-red-500">{countdown}</span>{" "}
@@ -327,10 +339,10 @@ const GuestForm = () => {
       {showThankYouModal && (
         <div className="fixed inset-0 overflow-y-auto z-50 flex items-center justify-center">
           <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 p-6 transition-colors duration-300">
-            <div className="text-center">
+          <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-xl max-w-md w-full mx-4 p-6 transition-colors duration-300">
+            <div className="text-center flex flex-col items-center justify-center">
               <CheckCircle className="mx-auto h-12 w-12 text-green-500" />
-              <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-gray-200">
+              <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-white">
                 Thank You!
               </h3>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">

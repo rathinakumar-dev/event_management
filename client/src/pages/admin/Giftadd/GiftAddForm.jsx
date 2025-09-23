@@ -111,10 +111,10 @@ const GiftAddForm = ({ editMode = false, initialData = null }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center p-6">
-      <Card className="border-slate-200 dark:border-slate-800 shadow-lg shadow-slate-200/40 dark:shadow-black/20 rounded-2xl w-full max-w-md mb-auto md:mb-0">
+    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-6">
+      <Card className="border-slate-200 dark:border-gray-700 shadow-lg shadow-slate-200/40 dark:shadow-black/30 rounded-2xl w-full max-w-md mb-auto md:mb-0 bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle className="text-2xl text-center text-gray-800">
+          <CardTitle className="text-2xl text-center text-gray-800 dark:text-white">
             {editMode ? "Update Gift Entry" : "Add Gift Entry"}
           </CardTitle>
         </CardHeader>
@@ -126,7 +126,12 @@ const GiftAddForm = ({ editMode = false, initialData = null }) => {
             encType="multipart/form-data"
           >
             <div className="grid gap-2">
-              <Label htmlFor="giftName">Gift Name</Label>
+              <Label
+                htmlFor="giftName"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Gift Name
+              </Label>
               <Input
                 id="giftName"
                 name="giftName"
@@ -134,40 +139,63 @@ const GiftAddForm = ({ editMode = false, initialData = null }) => {
                 value={formData.giftName}
                 onChange={handleInputChange}
                 placeholder="Enter gift name"
-                className={
-                  errors.giftName ? "border-red-500" : "border-gray-500"
-                }
+                className={`bg-white dark:bg-gray-800 border text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-indigo-500 dark:focus:border-indigo-400 ${
+                  errors.giftName
+                    ? "border-red-500 dark:border-red-400"
+                    : "border-gray-300 dark:border-gray-600"
+                }`}
               />
               {errors.giftName && (
-                <p className="text-red-500 text-sm mt-1">{errors.giftName}</p>
+                <p className="text-red-500 dark:text-red-400 text-sm mt-1">
+                  {errors.giftName}
+                </p>
               )}
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="giftImage">Gift Image</Label>
+              <Label
+                htmlFor="giftImage"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                Gift Image
+              </Label>
               <Input
                 id="giftImage"
                 name="giftImage"
                 type="file"
                 accept="image/*"
                 onChange={handleInputChange}
-                className={
-                  errors.giftImage ? "border-red-500" : "border-gray-500"
-                }
+                className={`bg-white dark:bg-gray-800 border text-gray-900 dark:text-white 
+                file:mr-4 file:px-4 file:rounded-md file:border-0 
+                file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 
+                dark:file:bg-gray-800 dark:file:text-gray-300  
+                 text-left flex items-center
+    ${
+      errors.giftImage
+        ? "border-red-500 dark:border-red-400"
+        : "border-gray-300 dark:border-gray-600"
+    }`}
               />
+
               {errors.giftImage && (
-                <p className="text-red-500 text-sm mt-1">{errors.giftImage}</p>
+                <p className="text-red-500 dark:text-red-400 text-sm mt-1">
+                  {errors.giftImage}
+                </p>
               )}
               {currentImage && (
                 <img
                   src={currentImage}
                   alt={formData.giftName || "Gift"}
-                  className="mt-2 h-16 w-16 object-cover rounded"
+                  className="mt-2 h-16 w-16 object-cover rounded border border-gray-200 dark:border-gray-600 shadow-sm"
                 />
               )}
             </div>
 
-            <Button type="submit" className="w-full mt-4" disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading}
+            >
               {loading
                 ? editMode
                   ? "Updating..."

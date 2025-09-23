@@ -101,17 +101,23 @@ const VerifyGuestList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-950 flex items-center justify-center p-4 sm:p-6">
-      <Card className="border-slate-200 dark:border-slate-800 shadow-lg rounded-2xl w-full max-w-6xl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4 sm:p-6">
+      <Card className="border-slate-200 dark:border-gray-700 shadow-lg dark:shadow-black/30 rounded-2xl w-full max-w-6xl">
         <CardHeader>
-          <CardTitle className="text-2xl text-center text-gray-800">
+          <CardTitle className="text-2xl text-center text-gray-800 dark:text-white">
             Verified Guest Details
           </CardTitle>
           <div className="flex flex-col sm:flex-row justify-end gap-2 mt-2">
-            <Button className="w-28" onClick={handlePrint}>
+            <Button
+              className="w-28 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white"
+              onClick={handlePrint}
+            >
               Print
             </Button>
-            <Button className="w-28" onClick={handleExportExcel}>
+            <Button
+              className="w-28 bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white"
+              onClick={handleExportExcel}
+            >
               Excel
             </Button>
           </div>
@@ -119,57 +125,81 @@ const VerifyGuestList = () => {
 
         <CardContent ref={printRef} className="overflow-x-auto">
           {loading && (
-            <p className="text-center py-4 text-gray-500">
+            <p className="text-center py-4 text-gray-500 dark:text-gray-400">
               Loading guest data...
             </p>
           )}
           {error && (
-            <p className="text-center py-4 text-red-600 font-semibold">
+            <p className="text-center py-4 text-red-600 dark:text-red-400 font-semibold">
               {error}
             </p>
           )}
           {!loading && !error && verifyGuestList.length === 0 && (
-            <p className="text-center py-4 text-gray-500">
+            <p className="text-center py-4 text-gray-500 dark:text-gray-400">
               No verified guests available
             </p>
           )}
           {!loading && !error && verifyGuestList.length > 0 && (
             <table className="w-full border-collapse text-xs sm:text-sm">
-              <thead className="border-b bg-gray-100 dark:bg-gray-800">
+              <thead className="border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
                 <tr>
-                  <th className="py-2 px-4 text-start">Name</th>
-                  <th className="py-2 px-4 text-start">Mobile</th>
-                  <th className="py-2 px-4 text-start">Gift Option</th>
-                  <th className="py-2 px-4 text-start">Custom Message</th>
-                  <th className="py-2 px-4 text-start">Gift Status</th>
-                  <th className="py-2 px-4 text-start">Claimed At</th>
+                  <th className="py-2 px-4 text-left font-medium text-gray-700 dark:text-gray-300">
+                    Name
+                  </th>
+                  <th className="py-2 px-4 text-left font-medium text-gray-700 dark:text-gray-300">
+                    Mobile
+                  </th>
+                  <th className="py-2 px-4 text-left font-medium text-gray-700 dark:text-gray-300">
+                    Gift Option
+                  </th>
+                  <th className="py-2 px-4 text-left font-medium text-gray-700 dark:text-gray-300">
+                    Custom Message
+                  </th>
+                  <th className="py-2 px-4 text-center font-medium text-gray-700 dark:text-gray-300">
+                    Gift Status
+                  </th>
+                  <th className="py-2 px-4 text-center font-medium text-gray-700 dark:text-gray-300">
+                    Claimed At
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {verifyGuestList.map((guest, index) => (
                   <tr
                     key={index}
-                    className="border-b hover:bg-gray-200 dark:hover:bg-gray-800"
+                    className="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150"
                   >
-                    <td className="py-2 px-4">{guest.name}</td>
-                    <td className="py-2 px-4">{guest.mobile}</td>
-                    <td className="py-2 px-4">
-                      {guest.gifts ? guest.gifts.giftName : "No gifts assigned"}
+                    <td className="py-2 px-4 align-middle text-left text-gray-900 dark:text-gray-100">
+                      {guest.name}
                     </td>
-                    <td className="py-2 px-4">{guest.customMessage || "-"}</td>
+                    <td className="py-2 px-4 align-middle text-left text-gray-900 dark:text-gray-100">
+                      {guest.mobile}
+                    </td>
+                    <td className="py-2 px-4 align-middle text-left text-gray-900 dark:text-gray-100">
+                      {guest.gifts ? (
+                        guest.gifts.giftName
+                      ) : (
+                        <span className="text-gray-500 dark:text-gray-400">
+                          No gifts assigned
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-2 px-4 align-middle text-left text-gray-900 dark:text-gray-100">
+                      {guest.customMessage || "-"}
+                    </td>
                     <td
-                      className={`py-2 px-4 font-semibold ${
+                      className={`py-2 px-4 align-middle text-center font-semibold ${
                         (guest.status ||
                           (guest.otpUsed ? "Claimed" : "Not Claimed")) ===
                         "Claimed"
-                          ? "text-green-600 p-2"
-                          : "text-red-600"
+                          ? "text-green-600 dark:text-green-400"
+                          : "text-red-600 dark:text-red-400"
                       }`}
                     >
                       {guest.status ||
                         (guest.otpUsed ? "Claimed" : "Not Claimed")}
                     </td>
-                    <td className={`py-2 px-4 font-semibold text-green-600`}>
+                    <td className="py-2 px-4 align-middle text-center font-semibold text-green-600 dark:text-green-400">
                       {guest.otpUsed &&
                       (guest.verifiedAt || guest.updatedAt) ? (
                         <>
@@ -182,7 +212,9 @@ const VerifyGuestList = () => {
                             .format("DD-MM-YYYY")}
                         </>
                       ) : (
-                        ""
+                        <span className="text-gray-500 dark:text-gray-400">
+                          —
+                        </span>
                       )}
                     </td>
                   </tr>

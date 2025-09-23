@@ -125,35 +125,53 @@ const EventAddedList = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-950 flex items-center justify-center p-4 sm:p-6">
-      <Card className="border-slate-200 dark:border-slate-800 shadow-lg rounded-2xl w-full max-w-6xl mb-auto md:mb-0">
+    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4 sm:p-6">
+      <Card className="border-slate-200 dark:border-gray-700 shadow-lg dark:shadow-black/30 rounded-2xl max-w-90  md:max-w-5xl mb-auto md:mb-0 bg-white dark:bg-gray-900">
         <CardHeader>
-          <CardTitle className="text-2xl text-center text-gray-800">
+          <CardTitle className="text-2xl text-center text-gray-800 dark:text-white">
             Event List
           </CardTitle>
         </CardHeader>
-
-        <CardContent className="overflow-x-auto">
-          <table className="w-full border-collapse text-xs sm:text-sm">
-            <thead className="border-b bg-gray-100 dark:bg-gray-800 ">
-              <tr className="text-gray-700 dark:text-gray-300 ">
-                <th className="px-2 py-4 text-start">Event Name</th>
-                <th className="px-2 py-4 text-start">Contact Person</th>
-                <th className="px-2 py-4 text-start">Contact No</th>
-                <th className="px-2 py-4 text-start">Function Name</th>
-                <th className="px-2 py-4 text-start">Function Type</th>
-                {/* <th className="px-2 py-4 text-start">Relation</th>
-                <th className="px-2 py-4 text-start">Welcome Image</th> */}
-                <th className="px-2 py-4 text-start">Agent</th>
-                <th className="px-2 py-4 text-start">Gifts</th>
-                <th className="px-2 py-4 text-center">Actions</th>
-                <th className="px-2 py-4">Status</th>
+        <CardContent className="overflow-x-auto relative">
+          <table className="min-w-max border-collapse text-xs sm:text-sm">
+            <thead className="border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
+              <tr>
+                <th className="px-2 py-4  text-left font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Event Name
+                </th>
+                <th className="px-2 py-4 text-left font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Contact Person
+                </th>
+                <th className="px-2 py-4 text-left font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Contact No
+                </th>
+                <th className="px-2 py-4 text-left font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Function Name
+                </th>
+                <th className="px-2 py-4 text-left font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Function Type
+                </th>
+                <th className="px-2 py-4 text-left font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Agent
+                </th>
+                <th className="px-2 py-4 text-center font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Gifts
+                </th>
+                <th className="px-2 py-4 text-center font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Actions
+                </th>
+                <th className="px-2 py-4 text-center font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                  Status
+                </th>
               </tr>
             </thead>
             <tbody>
               {eventList.length === 0 ? (
                 <tr>
-                  <td colSpan="10" className="text-center py-4 text-gray-500">
+                  <td
+                    colSpan="9"
+                    className="text-center py-4 text-gray-500 dark:text-gray-400 align-middle whitespace-nowrap"
+                  >
                     No events available
                   </td>
                 </tr>
@@ -161,61 +179,58 @@ const EventAddedList = () => {
                 eventList.map((event) => (
                   <tr
                     key={event._id}
-                    className="border-b hover:bg-gray-200 dark:hover:bg-gray-800"
+                    className="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-150"
                   >
-                    <td className="py-2 px-4">{event.eventName}</td>
-                    <td className="py-2 px-4">{event.contactPerson}</td>
-                    <td className="py-2 px-4">{event.contactNo}</td>
-                    <td className="py-2 px-4">
-                      {event.functionName} <br />
+                    <td className="py-2 px-4 text-left align-middle text-gray-900 dark:text-gray-100  break-all max-w-[120px]">
+                      {event.eventName}
+                    </td>
+                    <td className="py-2 px-4 text-left align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap break-all">
+                      {event.contactPerson}
+                    </td>
+                    <td className="py-2 px-4 text-left align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap break-all">
+                      {event.contactNo}
+                    </td>
+                    <td className="py-2 px-4 text-left align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap break-all">
+                      {event.functionName}
+                      <br />
                       {event.guestFormUrl ? (
-                        <div className="flex flex-col gap-2 items-center">
+                        <div className="flex flex-col items-center gap-2 mt-2">
                           <a
                             href={event.guestFormUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 underline"
+                            className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300 transition-colors break-all"
                           >
                             Open Form
                           </a>
-                          <QRCodeCanvas value={event.guestFormUrl} size={80} />
+                          <div className="bg-white dark:bg-gray-700 p-1 rounded flex items-center justify-center">
+                            <QRCodeCanvas
+                              value={event.guestFormUrl}
+                              size={80}
+                            />
+                          </div>
                         </div>
                       ) : (
-                        <span className="text-gray-500">No link</span>
+                        <span className="text-gray-500 dark:text-gray-400 block">
+                          No link
+                        </span>
                       )}
                     </td>
-                    <td className="py-2 px-4">{event.functionType}</td>
-                    {/* <td className="py-2 px-4">
-                      {event.relationEnabled
-                        ? `Bride: ${event.brideName}, Groom: ${event.groomName}`
-                        : "N/A"}
+                    <td className="py-2 px-4 text-left align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap break-all">
+                      {event.functionType}
                     </td>
-                    <td className="py-2 px-4">
-                      {event.welcomeImage ? (
-                        <img
-                          src={event.welcomeImage}
-                          alt="Welcome"
-                          className="w-16 h-16 object-cover rounded-lg"
-                          onError={(e) => {
-                            e.target.style.display = "none";
-                          }}
-                        />
-                      ) : (
-                        <span className="text-gray-500 text-sm">No image</span>
-                      )}
-                    </td> */}
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-4 text-left align-middle text-gray-900 dark:text-gray-100 whitespace-nowrap break-all">
                       {event.agentId?.name || "No agent"}
                     </td>
-                    <td className="py-2">
+                    <td className="py-2 align-middle text-center whitespace-nowrap">
                       {event.gifts && event.gifts.length > 0 ? (
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center justify-center">
                           {event.gifts.slice(0, 1).map((gift) => (
                             <img
                               key={gift._id}
                               src={gift.giftImage}
                               alt={gift.giftName}
-                              className="w-10 h-10 object-cover rounded-md"
+                              className="w-10 h-10 object-cover rounded-md border border-gray-200 dark:border-gray-600 mb-1"
                               onError={(e) => (e.target.style.display = "none")}
                             />
                           ))}
@@ -223,48 +238,66 @@ const EventAddedList = () => {
                             <Button
                               size="sm"
                               variant="link"
-                              className={"px-0 text-blue-700"}
+                              className="px-0 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                               onClick={() => openGiftDialog(event.gifts)}
                             >
-                              {" "}
                               +{event.gifts.length - 1} more
                             </Button>
                           )}
                         </div>
                       ) : (
-                        <span className="text-gray-500 text-sm">No gifts</span>
+                        <span className="text-gray-500 dark:text-gray-400 text-sm block">
+                          No gifts
+                        </span>
                       )}
                     </td>
-                    <td className="py-2 px-4 flex justify-center gap-2 items-center mt-1 align-middle">
-                      <Button
-                        size="sm"
-                        onClick={() => handleEdit(event)}
-                        className="bg-blue-500 text-white"
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        size="sm"
-                        onClick={() => handleDelete(event._id)}
-                        className="bg-red-500 text-white"
-                      >
-                        Delete
-                      </Button>
+                    <td className="py-2 px-4 align-middle text-center whitespace-nowrap">
+                      <div className="flex justify-center gap-2 items-center">
+                        <Button
+                          size="sm"
+                          onClick={() => handleEdit(event)}
+                          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium px-3 py-1 rounded-md transition-colors duration-200"
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          size="sm"
+                          onClick={() => handleDelete(event._id)}
+                          className="bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 text-white font-medium px-3 py-1 rounded-md transition-colors duration-200"
+                        >
+                          Delete
+                        </Button>
+                      </div>
                     </td>
-                    <td className="py-2 px-4">
+                    <td className="py-2 px-4 align-middle text-center whitespace-nowrap">
                       <Select
                         value={event.status}
                         onValueChange={(value) =>
                           handleStatusChange(event._id, value)
                         }
                       >
-                        <SelectTrigger className="w-28">
+                        <SelectTrigger className="w-28 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white mx-auto">
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="pending">Pending</SelectItem>
-                          <SelectItem value="active">Active</SelectItem>
-                          <SelectItem value="completed">Completed</SelectItem>
+                        <SelectContent className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
+                          <SelectItem
+                            value="pending"
+                            className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-center"
+                          >
+                            Pending
+                          </SelectItem>
+                          <SelectItem
+                            value="active"
+                            className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-center"
+                          >
+                            Active
+                          </SelectItem>
+                          <SelectItem
+                            value="completed"
+                            className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-center"
+                          >
+                            Completed
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </td>
@@ -276,19 +309,24 @@ const EventAddedList = () => {
         </CardContent>
       </Card>
 
-      {/* Shadcn Dialog for Gifts */}
+      {/* Gifts Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-3xl max-w-lg rounded-2xl [&>button]:hidden">
+        <DialogContent className="sm:max-w-3xl max-w-lg rounded-2xl [&>button]:hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
           <DialogHeader>
-            <DialogTitle className={"text-center text-2xl"}>Gifts</DialogTitle>
+            <DialogTitle className="text-center text-2xl text-gray-800 dark:text-white">
+              Gifts
+            </DialogTitle>
           </DialogHeader>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-2">
             {selectedGifts.map((gift) => (
-              <div key={gift._id} className="text-center">
+              <div
+                key={gift._id}
+                className="text-center flex flex-col items-center justify-center"
+              >
                 <img
                   src={gift.giftImage}
                   alt={gift.giftName}
-                  className="w-full h-28 object-contain rounded-lg"
+                  className="w-full h-28 object-contain rounded-lg border border-gray-200 dark:border-gray-600"
                   onError={(e) => (e.target.style.display = "none")}
                 />
                 <p className="text-sm mt-1 text-gray-700 dark:text-gray-300">
@@ -297,8 +335,13 @@ const EventAddedList = () => {
               </div>
             ))}
           </div>
-          <DialogFooter className={"mx-auto items-center"}>
-            <Button onClick={() => setDialogOpen(false)}>Close</Button>
+          <DialogFooter className="mx-auto items-center">
+            <Button
+              onClick={() => setDialogOpen(false)}
+              className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white"
+            >
+              Close
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

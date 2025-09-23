@@ -53,7 +53,7 @@ export default function Login() {
       });
 
       const data = res.data;
-     // console.log(data);
+      // console.log(data);
 
       if (!data?.accessToken || !data?.user) {
         throw new Error("Invalid response from server");
@@ -102,29 +102,34 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-900 dark:to-slate-950 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-200 to-slate-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-6">
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         className="w-full max-w-md"
       >
-        <Card className="border-slate-200 dark:border-slate-800 shadow-lg shadow-slate-200/40 dark:shadow-black/20 rounded-2xl">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center text-gray-900 dark:text-gray-100">
+        <Card className="border-slate-200 dark:border-gray-700 shadow-lg dark:shadow-black/30 rounded-2xl">
+          <CardHeader className="space-y-2">
+            <CardTitle className="text-2xl text-center text-gray-900 dark:text-white">
               Moon Live Gifts
             </CardTitle>
             <CardDescription className="text-center text-gray-700 dark:text-gray-300">
               Sign in to your account
             </CardDescription>
           </CardHeader>
-
           <CardContent>
             <form onSubmit={handleSubmit} className="grid gap-5" noValidate>
+              {/* Username Field */}
               <div className="grid gap-2">
-                <Label htmlFor="username">Username</Label>
+                <Label
+                  htmlFor="username"
+                  className="text-gray-700 dark:text-gray-300"
+                >
+                  Username
+                </Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60 pointer-events-none" />
                   <Input
                     id="username"
                     name="username"
@@ -132,9 +137,7 @@ export default function Login() {
                     placeholder="johndoe_123"
                     value={form.username}
                     onChange={handleChange}
-                    className={`pl-9 border ${
-                      errors.username ? "border-red-500" : "border-gray-500"
-                    } dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200`}
+                    className="pl-9 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                     autoComplete="username"
                     required
                   />
@@ -145,11 +148,16 @@ export default function Login() {
                   </p>
                 )}
               </div>
-
+              {/* Password Field */}
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <Label
+                  htmlFor="password"
+                  className="text-gray-700 dark:text-gray-300"
+                >
+                  Password
+                </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60 pointer-events-none" />
                   <Input
                     id="password"
                     name="password"
@@ -157,19 +165,18 @@ export default function Login() {
                     placeholder="••••••••"
                     value={form.password}
                     onChange={handleChange}
-                    className={`pl-9 pr-10 border ${
-                      errors.password ? "border-red-500" : "border-gray-500"
-                    } dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200`}
+                    className="pl-9 pr-10 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                     autoComplete="current-password"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((s) => !s)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-md hover:bg-slate-100 dark:hover:bg-gray-700"
                     aria-label={
                       showPassword ? "Hide password" : "Show password"
                     }
+                    tabIndex={-1}
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4" />
@@ -184,33 +191,31 @@ export default function Login() {
                   </p>
                 )}
               </div>
-
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center mt-2 gap-2">
-                  <Checkbox
-                    id="remember"
-                    className="border-gray-500 dark:border-gray-600"
-                    checked={remember}
-                    onCheckedChange={(v) => setRemember(Boolean(v))}
-                  />
-                  <Label
-                    htmlFor="remember"
-                    className="font-normal text-gray-700 dark:text-gray-300"
-                  >
-                    Remember me
-                  </Label>
-                </div>
+              {/* Remember Checkbox */}
+              <div className="flex items-center gap-2 mt-2">
+                <Checkbox
+                  id="remember"
+                  className="border-gray-300 dark:border-gray-600"
+                  checked={remember}
+                  onCheckedChange={(v) => setRemember(Boolean(v))}
+                />
+                <Label
+                  htmlFor="remember"
+                  className="font-normal text-gray-700 dark:text-gray-300"
+                >
+                  Remember me
+                </Label>
               </div>
-
+              {/* Message/Error */}
               {message && (
-                <div className="text-sm text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3">
+                <div className="text-sm text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3 text-center">
                   {message}
                 </div>
               )}
-
+              {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full mx-auto"
+                className="w-full mx-auto bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md flex items-center justify-center"
                 disabled={loading}
               >
                 {loading ? (
